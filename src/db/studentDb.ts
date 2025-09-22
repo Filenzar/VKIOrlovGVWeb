@@ -7,8 +7,8 @@ sqlite3.verbose();
 export const getStudentsDb = async (): Promise<StudentInterface[]> => {
   const db = new sqlite3.Database(process.env.DB ?? './db/vki-web.db');
 
-  const groups = await new Promise((resolve, reject) => {
-    const sql = 'SELECT * FROM class';
+  const students = await new Promise((resolve, reject) => {
+    const sql = 'SELECT * FROM student';
     db.all(sql, [], (err, rows) => {
       if (err) {
         reject(err);
@@ -30,5 +30,5 @@ export const getStudentsDb = async (): Promise<StudentInterface[]> => {
   //   },
   // ];
 
-  return groups as StudentInterface[];
+  return students as StudentInterface[];
 };
