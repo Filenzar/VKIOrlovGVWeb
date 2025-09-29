@@ -1,4 +1,4 @@
-import Students from '@/components/Students/Students';
+import Students from '@/components/Students/Student';
 import Page from '@/components/layout/Page/Page';
 import { type Metadata } from 'next/types';
 
