@@ -8,6 +8,7 @@ export const getStudentsApi = async (): Promise<StudentInterface[]> => {
       throw new Error(`Ошибка HTTP: ${response.status}${response.statusText}`);
     }
     const students = await response.json() as StudentInterface[];
+
     return students;
   }
   catch (err) {
@@ -57,6 +58,9 @@ export const addStudentApi = async (payload: AddStudentPayload): Promise<Student
       throw new Error(`Ошибка HTTP: ${response.status}${response.statusText}`);
     }
     const student = await response.json() as StudentInterface;
+
+    console.log('addStudentApi ok', student);
+    debugger;
     return student;
   }
   catch (err) {

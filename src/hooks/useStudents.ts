@@ -94,13 +94,20 @@ const useStudents = (): StudentsHookInterface => {
       };
       const updatedStudents = [ ...(previousStudents ?? []), optimisticStudent ];
       queryClient.setQueryData<StudentInterface[]>(['students'], updatedStudents);
+
+      console.log('addStudentMutate onMutate', previousStudents, optimisticId );
+      debugger;
       return { previousStudents, optimisticId };
     },
     onError: (err, variables, context) => {
-      console.log('>>> addStudentMutate err', err);
+      console.log('addStudentMutate err', err);
+      debugger;
       queryClient.setQueryData<StudentInterface[]>(['students'], context?.previousStudents);
     },
     onSuccess: async (student, variables, context) => {
+      console.log('addStudentMutate onSuccess', student );
+      debugger;
+      
       await queryClient.cancelQueries({ queryKey: ['students'] });
       if (!student) {
         await refetch();
